@@ -1,0 +1,2 @@
+import {ArrowUpRight,ArrowDown} from 'lucide-react';
+export default function ContactLink({label,url,download=false}){const Icon=download?ArrowDown:ArrowUpRight;return url?<a className="contact-link" href={url} download={download||undefined} target={!download&&!url.startsWith('mailto:')?'_blank':undefined} rel="noopener noreferrer"><span>{label}</span><Icon size={23}/></a>:<div className="contact-link unavailable" aria-disabled="true"><span>{label}</span><small>{download?'PDF 준비 중':'링크 준비 중'}</small><Icon size={23}/></div>}

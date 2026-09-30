@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+
+# Local review artifacts and font experiments
+artifacts/
+SOURCE_REVIEW.md
+public/font-previews/

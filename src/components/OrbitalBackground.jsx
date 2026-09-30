@@ -1,0 +1,1 @@
+export default function OrbitalBackground(){return <div className="orbital" aria-hidden="true"><div className="orbital-sphere"/><div className="orbit orbit-one"/><div className="orbit orbit-two"/><i className="satellite"/></div>}
