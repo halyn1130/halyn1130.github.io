@@ -347,7 +347,7 @@ export const caseStudies = {
           "skalapse/reader-chat.png"
         ],
         "imageCaptions": [
-          "교안을 읽으며 스칼리에게 질문하는 학습 화면"
+          "교안 기반 질문 화면 · 포트폴리오용 질문 예시로 편집"
         ]
       },
       {
@@ -362,8 +362,8 @@ export const caseStudies = {
           "skalapse/review.png"
         ],
         "imageCaptions": [
-          "강의 개념과 관계를 탐색하는 마인드맵",
-          "저장한 질문의 대화와 자료로 돌아가는 복습 화면"
+          "개념 관계를 탐색하는 마인드맵 · 포트폴리오용 질문 예시로 편집",
+          "복습 화면 · 포트폴리오용 예시 대화로 편집"
         ]
       },
       {

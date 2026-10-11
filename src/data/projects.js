@@ -194,7 +194,7 @@ export const projects = [
     ],
     "image": "skalapse/reader-chat.png",
     "galleryLabel": "학습 화면",
-    "imageCaption": "SKALAPSE 실제 구현 화면 · 교안 열람과 스칼리 AI 질문",
+    "imageCaption": "SKALAPSE 학습 화면 · 포트폴리오용 질문 예시로 편집",
     "organization": "SKALA · AI 학습 서비스",
     "problem": "같은 강의를 들어도 배경지식과 막히는 지점은 다릅니다. 수업을 멈추지 않고 필요한 설명을 얻고, 질문 당시의 맥락으로 돌아가 복습할 수 있는 학습 공간을 구성했습니다.",
     "approach": "학생이 보고 있는 교안·실습 자료와 강사의 음성 전사, 최근 대화를 함께 구성해 로컬 AI가 답변합니다. 수업 중 생성되는 마인드맵과 저장한 질문을 복습으로 연결합니다.",
