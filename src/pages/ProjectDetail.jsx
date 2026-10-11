@@ -78,7 +78,7 @@ export default function ProjectDetail() {
       {story.chapters.map((chapter,index)=><div className="hansol-work-row" key={chapter.title}>
         <div className="hansol-work-title"><span>{String(index+1).padStart(2,'0')}</span><h3>{chapter.title}</h3></div>
         <ul>{chapter.overview.map(item=><li key={item}>{item}</li>)}</ul>
-        <div className="hansol-work-action">{(chapter.images||chapter.code)&&<button type="button" className="architecture-open" aria-haspopup="dialog" onClick={()=>setArchitecture(chapter)}>{chapter.code?'코드 보기':id==='alk'?'연구 자료 보기':'아키텍처 보기'} <ArrowRight size={17} aria-hidden="true"/></button>}</div>
+        <div className="hansol-work-action">{(chapter.images||chapter.code)&&<button type="button" className="architecture-open" aria-haspopup="dialog" onClick={()=>setArchitecture(chapter)}>{chapter.code?'코드 보기':id==='alk'?'연구 자료 보기':id==='skalapse'?'구현 화면 보기':'아키텍처 보기'} <ArrowRight size={17} aria-hidden="true"/></button>}</div>
       </div>)}
     </section>
     <div className="case-ending-page">

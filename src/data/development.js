@@ -68,29 +68,6 @@ export const development = {
       }
     ]
   },
-  "msa": {
-    "personal": false,
-    "summary": "OAuth2 인증 전파 · REST / Kafka 상태 연동 · FastAPI 규칙 추천",
-    "headline": "수강신청부터 결제·추천까지,\n서비스 경계와 상태 전이를 연결하는 MSA.",
-    "description": "LearnNexus는 User·Course·Enrollment·Payment·Recommend로 구성된 온라인 교육 플랫폼 실습입니다. 핵심은 기능을 나누는 데서 끝나지 않고, 인증 정보와 결제·수강 상태를 서비스 사이에 전달하는 구조입니다. 아래는 제공된 실습 문서의 설계 범위입니다.",
-    "modules": [
-      {
-        "name": "인증 경계",
-        "tech": "OAuth2 / JWT / Gateway",
-        "work": "JWK 검증 · 사용자 헤더 전파 · 서비스 간 Client Credentials"
-      },
-      {
-        "name": "수강·결제 흐름",
-        "tech": "REST / Kafka",
-        "work": "PENDING → 결제 완료 이벤트 → ACTIVE → 추천 갱신"
-      },
-      {
-        "name": "추천·통합 구성",
-        "tech": "FastAPI / Eureka / Docker Compose",
-        "work": "수강 이력 기반 규칙 추천 · 서비스 탐색 · 컨테이너 통합"
-      }
-    ]
-  },
   "boachat": {
     "summary": "LangChain 유사도 검색 · QA 체인 직접 구현",
     "modules": [
@@ -167,6 +144,29 @@ export const development = {
         "name": "시뮬레이션",
         "tech": "Monte Carlo",
         "work": "공정 조건과 Spec Margin 탐색"
+      }
+    ]
+  },
+  "skalapse": {
+    "personal": false,
+    "summary": "강의 맥락 기반 AI 답변 · 마인드맵 · 복습 · 로컬 AI 운영",
+    "headline": "수업의 흐름을 놓치지 않고,\n각자의 속도로 질문하고 복습하는 학습 공간.",
+    "description": "학생이 보고 있는 교안·실습 자료와 강사의 음성 전사, 최근 대화를 함께 구성해 로컬 AI가 답변합니다. 수업 중 생성되는 마인드맵과 저장한 질문을 복습으로 연결합니다.",
+    "modules": [
+      {
+        "name": "맥락 기반 AI",
+        "tech": "LangGraph / Qwen3.5 / Whisper",
+        "work": "교안·실습·강의 전사·최근 대화를 결합한 답변 생성"
+      },
+      {
+        "name": "학습 경험",
+        "tech": "React / TypeScript",
+        "work": "교안·실습 탐색 · 개념 마인드맵 · 질문 저장과 복습"
+      },
+      {
+        "name": "로컬 운영 · 기록",
+        "tech": "Python / SQLite / vLLM Metal",
+        "work": "운영 Mac 기반 추론 · AI 실행 기록 · 교수자 질문 인사이트"
       }
     ]
   }

@@ -172,41 +172,42 @@ export const projects = [
     "imageCaption": "사용자 제공 ADAM 실제 화면 · 손 랜드마크 인식과 발표 제어"
   },
   {
-    "id": "msa",
+    "id": "skalapse",
     "order": "04",
-    "category": "BACKEND",
+    "category": "AI / EDUCATION",
     "filters": [
+      "AI/AX",
+      "LLM",
       "Backend"
     ],
-    "title": "LearnNexus\nMSA Platform",
-    "subtitle": "수강신청·결제·추천을 연결하는 온라인 교육 플랫폼",
+    "title": "SKALAPSE",
+    "subtitle": "교안과 실시간 강의 맥락을 연결하는\nAI 학습 서비스",
     "tech": [
-      "Java 21",
-      "Spring Boot",
-      "Spring Cloud Gateway",
-      "OAuth2 / JWT",
-      "Kafka",
-      "MariaDB",
-      "FastAPI",
-      "Vue 3",
-      "Docker Compose"
+      "LangGraph",
+      "Qwen3.5",
+      "Whisper",
+      "React",
+      "TypeScript",
+      "Python",
+      "SQLite",
+      "vLLM Metal"
     ],
-    "image": "msa/msa-architecture.png",
-    "problem": "인증·강의·수강·결제·추천을 분리한 서비스 사이에서 사용자와 상태를 일관되게 전달하는 MSA 실습입니다.",
-    "approach": "REST로 즉시 응답이 필요한 요청을 연결하고 Kafka로 결제 완료와 수강 활성화 이벤트를 전달하는 구조입니다.",
+    "image": "skalapse/reader-chat.png",
+    "galleryLabel": "학습 화면",
+    "imageCaption": "SKALAPSE 실제 구현 화면 · 교안 열람과 스칼리 AI 질문",
+    "organization": "SKALA · AI 학습 서비스",
+    "problem": "같은 강의를 들어도 배경지식과 막히는 지점은 다릅니다. 수업을 멈추지 않고 필요한 설명을 얻고, 질문 당시의 맥락으로 돌아가 복습할 수 있는 학습 공간을 구성했습니다.",
+    "approach": "학생이 보고 있는 교안·실습 자료와 강사의 음성 전사, 최근 대화를 함께 구성해 로컬 AI가 답변합니다. 수업 중 생성되는 마인드맵과 저장한 질문을 복습으로 연결합니다.",
     "pipeline": [
-      "수강신청 PENDING",
-      "결제 요청 REST",
-      "payment.completed",
-      "수강 ACTIVE",
-      "enrollment.completed",
-      "추천 갱신"
+      "교안 · 강의 음성",
+      "본문 추출 · Whisper 전사",
+      "LangGraph 문맥 구성",
+      "Qwen3.5 답변",
+      "질문 저장 · 복습"
     ],
-    "organization": "SKALA · Agile / MSA 실습",
-    "imageCaption": "MSA 실습 요약자료 p.1 · 서비스 경계와 인프라 구성",
     "sources": [
-      "MSA 실습 프로젝트 요약 및 역할분담.pdf · pp.1–3",
-      "실습 구성·역할 분담안 기준. 개인 담당 및 통합 검증 결과는 문서에 명시되지 않음."
+      "SKALAPSE README · 사용 화면 안내",
+      "docs/LOCAL-AI.ko.md · docs/DATA.ko.md · docs/INSTRUCTOR-INSIGHTS.ko.md"
     ]
   },
   {
@@ -362,4 +363,5 @@ export const projects = [
     ]
   }
 ];
+
 export const filters = ["All","AI/AX","Research","Computer Vision","LLM","Backend","Data"];

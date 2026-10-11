@@ -235,48 +235,6 @@ export const caseStudies = {
       }
     ]
   },
-  "msa": {
-    "headline": "수강신청부터 결제·추천까지,\n서비스 경계와 상태 전이를 연결하는 MSA.",
-    "summary": "LearnNexus는 User·Course·Enrollment·Payment·Recommend로 구성된 온라인 교육 플랫폼 실습입니다. 핵심은 기능을 나누는 데서 끝나지 않고, 인증 정보와 결제·수강 상태를 서비스 사이에 전달하는 구조입니다. 아래는 제공된 실습 문서의 설계 범위입니다.",
-    "chapters": [
-      {
-        "title": "즉시 확인할 요청과 완료 후 전달할 이벤트를 분리합니다.",
-        "text": "Enrollment는 REST로 강의 존재를 확인한 뒤 PENDING 상태의 수강신청을 만들고 Payment에 결제를 요청합니다. 결제가 완료되면 Payment가 Kafka의 payment.completed를 발행하고, Enrollment가 이를 수신해 ACTIVE로 전환하는 흐름입니다.",
-        "decision": "결제 요청 자체를 수강 완료로 취급하지 않고, 결제 완료 이벤트를 상태 전이의 기준으로 둡니다.",
-        "details": [
-          "Enrollment → Course: 강의 존재 확인",
-          "Enrollment → Payment: 결제 요청",
-          "payment.completed 수신 → ACTIVE 전환 → 수강생 수 증가",
-          "enrollment.completed 발행 → Recommend 갱신"
-        ],
-        "pipeline": true
-      },
-      {
-        "title": "사용자 요청과 서비스 간 호출의 인증 방식을 구분합니다.",
-        "text": "Auth Server가 발급한 JWT를 Gateway에서 JWK로 검증하고 X-User-Id·Email·Role 헤더를 하위 서비스로 전달하는 구조입니다. 서비스 간 호출은 Client Credentials와 service.read scope를 사용하도록 정의되어 있습니다.",
-        "decision": "issuer·JWK 주소·scope를 서비스 전반에서 일치시키는 것이 인증 통합의 핵심입니다.",
-        "details": [
-          "Spring Authorization Server: 토큰 발급 · JWK Set 제공",
-          "Spring Cloud Gateway: 라우팅 · JWT 검증 · 헤더 전파",
-          "Resource Server: 서비스 접근 권한 검증",
-          "컨테이너에서는 localhost 대신 서비스명으로 통신"
-        ]
-      },
-      {
-        "title": "추천은 별도 Python 서비스로, 데이터는 도메인 단위로 나눕니다.",
-        "text": "FastAPI Recommend는 수강 이력과 강의 목록에 기반한 규칙 추천을 담당합니다. 데이터베이스는 MariaDB 단일 인스턴스 안에서 users·courses·enrollments·payments 테이블로 경계를 나눕니다. Eureka는 서비스 등록·탐색, Docker Compose는 전체 컨테이너 통합을 담당합니다.",
-        "decision": "추천 모델 학습 성과가 아니라, Spring Boot 서비스와 FastAPI의 통신·인증·기동 의존성을 다루는 실습으로 설명합니다.",
-        "details": [
-          "Vue 3: 로그인 · 강의 목록 · 수강 화면",
-          "FastAPI: 규칙 기반 추천",
-          "Kafka KRaft: 결제·수강 완료 이벤트",
-          "통합 점검 대상: 인증 값 일치 · 토픽 수신 · 서비스 등록 · 기동 순서"
-        ]
-      }
-    ],
-    "outcome": "서비스 분리에서 인증·이벤트 통합까지 이어지는 실습 구조",
-    "evidence": "첨부 문서는 프로젝트 요약과 역할 분담안입니다. 완료된 트러블슈팅 결과나 개인별 담당 서비스는 명시되어 있지 않습니다."
-  },
   "boachat": {
     "headline": "카카오톡 대화와 공지 PDF를\n질문으로 검색하는 RAG 챗봇으로 연결했습니다.",
     "summary": "BOAZ의 대화 기록과 공지 문서를 기반으로 동아리 정보를 검색하는 BOAchat 프로젝트에서 Team Leader를 맡았습니다.",
@@ -373,5 +331,51 @@ export const caseStudies = {
         "pipeline": true
       }
     ]
+  },
+  "skalapse": {
+    "headline": "수업의 흐름을 놓치지 않고,\n각자의 속도로 질문하고 복습하는 학습 공간.",
+    "summary": "학생이 보고 있는 교안·실습 자료와 강사의 음성 전사, 최근 대화를 함께 구성해 로컬 AI가 답변합니다. 수업 중 생성되는 마인드맵과 저장한 질문을 복습으로 연결합니다.",
+    "chapters": [
+      {
+        "title": "교안과 강의 맥락을 함께 사용하는 AI 답변",
+        "overview": [
+          "선택한 교안·실습 파일 + 강의 전사 + 최근 대화로 질문 문맥 구성",
+          "LangGraph로 검색 방향·자료 검색·입력 정리와 생성 단계 연결",
+          "입력 한도에 맞춰 참고 정보를 줄이면서 현재 질문과 개인 지시 유지"
+        ],
+        "images": [
+          "skalapse/reader-chat.png"
+        ],
+        "imageCaptions": [
+          "교안을 읽으며 스칼리에게 질문하는 학습 화면"
+        ]
+      },
+      {
+        "title": "수업 중 이해를 복습으로 연결하는 학습 공간",
+        "overview": [
+          "Whisper 전사에서 수업 흐름과 개념 관계를 정리해 마인드맵 제공",
+          "선택한 개념과 연결 관계를 질문 맥락에 반영",
+          "질문·답변 저장 후 당시 자료를 다시 열고 후속 질문으로 복습"
+        ],
+        "images": [
+          "skalapse/concept-map.png",
+          "skalapse/review.png"
+        ],
+        "imageCaptions": [
+          "강의 개념과 관계를 탐색하는 마인드맵",
+          "저장한 질문의 대화와 자료로 돌아가는 복습 화면"
+        ]
+      },
+      {
+        "title": "운영 Mac 한 대에서 실행하는 로컬 AI",
+        "overview": [
+          "React·Python API·Whisper·Qwen3.5를 운영 Mac에서 연결",
+          "vLLM Metal 추론과 요청 대기열로 로컬 모델 자원 관리",
+          "SQLite 실행 기록과 질문 집계를 교수자 인사이트로 연결"
+        ]
+      }
+    ],
+    "outcome": "교안·강의·질문·복습을 하나의 학습 흐름으로",
+    "evidence": "저장소 구현과 사용 안내 기준 · 학습 효과와 응답 성능의 정량 수치는 별도 측정 전입니다."
   }
 };

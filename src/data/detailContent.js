@@ -22,14 +22,48 @@ export const detailContent = {
     evidence:'팀 저장소 구현 기준 · 외부 앱 제어: 대상 앱·권한별 실기기 검증 필요',
     outcomeItems:[{title:'웹 발표 기능',result:'PDF 렌더링 · 슬라이드 이동 · 포인터 제어'},{title:'사용자별 제어 설정',result:'제스처 매핑 · 감도 조절 · 발표 프로필'}],
   },
-  msa:{heading:'핵심 설계 · 서비스 연동',scope:'실습 설계 범위',
-    chapters:[
-      ['REST 요청 및 Kafka 상태 전이',['강의 확인 → 수강 PENDING → REST 결제 요청','payment.completed → ACTIVE · 수강생 수 갱신','enrollment.completed → 추천 갱신']],
-      ['인증 검증 및 사용자 정보 전파',['Auth Server JWT 발급 → Gateway JWK 검증','X-User-Id · Email · Role 헤더 전파','서비스 간 Client Credentials · service.read scope']],
-      ['추천 서비스 및 통합 구성',['FastAPI: 수강 이력 기반 규칙 추천','MariaDB 단일 인스턴스 · 도메인별 테이블 분리','Eureka 서비스 탐색 · Docker Compose 통합']],
-    ],outcome:'서비스 경계 · 인증 · 이벤트 연동 설계',evidence:'실습 요약·역할 분담안 기준 · 개인 담당 및 통합 검증 결과 미확인',
-    outcomeItems:[{title:'5개 도메인 서비스',result:'User · Course · Enrollment · Payment · Recommend'},{title:'수강 상태 중심 연동',result:'REST 즉시 요청 / Kafka 완료 이벤트'}],
-  },
+  skalapse:{
+  "heading": "핵심 구현 · 학습 흐름",
+  "scope": "프로젝트 핵심 구현",
+  "chapters": [
+    [
+      "교안과 강의 맥락을 함께 사용하는 AI 답변",
+      [
+        "선택한 교안·실습 파일 + 강의 전사 + 최근 대화로 질문 문맥 구성",
+        "LangGraph로 검색 방향·자료 검색·입력 정리와 생성 단계 연결",
+        "입력 한도에 맞춰 참고 정보를 줄이면서 현재 질문과 개인 지시 유지"
+      ]
+    ],
+    [
+      "수업 중 이해를 복습으로 연결하는 학습 공간",
+      [
+        "Whisper 전사에서 수업 흐름과 개념 관계를 정리해 마인드맵 제공",
+        "선택한 개념과 연결 관계를 질문 맥락에 반영",
+        "질문·답변 저장 후 당시 자료를 다시 열고 후속 질문으로 복습"
+      ]
+    ],
+    [
+      "운영 Mac 한 대에서 실행하는 로컬 AI",
+      [
+        "React·Python API·Whisper·Qwen3.5를 운영 Mac에서 연결",
+        "vLLM Metal 추론과 요청 대기열로 로컬 모델 자원 관리",
+        "SQLite 실행 기록과 질문 집계를 교수자 인사이트로 연결"
+      ]
+    ]
+  ],
+  "outcome": "교안·강의·질문·복습을 하나의 학습 흐름으로",
+  "evidence": "저장소 구현과 사용 안내 기준 · 학습 효과와 응답 성능의 정량 수치는 별도 측정 전입니다.",
+  "outcomeItems": [
+    {
+      "title": "수업 중 질문에서 수업 후 복습까지",
+      "result": "교안·강의 맥락 기반 답변 → 개념 탐색 → 질문 저장 → 후속 질문"
+    },
+    {
+      "title": "로컬 AI와 학습 기록 연결",
+      "result": "운영 Mac 추론 · 실행 기록 저장 · 교수자 인사이트"
+    }
+  ]
+},
   boachat:{heading:'핵심 구현 · 협업',
     chapters:[
       ['대화·문서 검색 기반 구성',['팀 데이터: BOAZ 카카오톡 대화 · 공지 PDF','Document Loader → Text Splitter → OpenAI Embedding','Pinecone 벡터 저장소']],

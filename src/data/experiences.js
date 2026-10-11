@@ -164,7 +164,7 @@ export const experienceOverview = {
       "name": "SKALA 4기",
       "role": "SK AI Leader Academy · SK AX",
       "summary": "AI 서비스 개발 · Spring Boot MSA · Cloud Native",
-      "project": "msa"
+      "project": "skalapse"
     },
     {
       "id": "eureka",
